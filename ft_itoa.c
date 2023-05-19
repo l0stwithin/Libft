@@ -6,7 +6,7 @@
 /*   By: sdutta <sdutta@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 15:54:39 by sdutta            #+#    #+#             */
-/*   Updated: 2023/05/17 20:49:54 by sdutta           ###   ########.fr       */
+/*   Updated: 2023/05/17 22:31:39 by sdutta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ char	*ft_itoa(int n)
 {
 	char	*str;
 	int		nd;
-	int		neg;
 	char	dig;
 
 	nd = num_dig(n);
-	neg = is_neg(n);
-	str = (char *)malloc(nd + neg + 1);
-	str[nd + neg] = 0;
+	str = (char *)malloc(nd + is_neg(n) + 1);
+	if (!str)
+		return (NULL);
+	str[nd + is_neg(n)] = 0;
 	if (n == 0)
 		str[0] = 48;
-	if (neg)
+	if (n < 0)
 	{
 		dig = -(n % 10) + 48;
 		str[0] = '-';
