@@ -1,6 +1,7 @@
 #include "libft.h"
 #include <stdio.h>
 #include <string.h>
+#include <strings.h>
 #include <bsd/string.h>
 #include <ctype.h>
 
@@ -43,7 +44,7 @@ int	main()
 	// char	*str = "  Hello Hallo Dobry Namaste    Nomoskar  Hola  Bonjour  ";
 	strs = ft_split(" Hello   Hallo Hola    Bonjour Dobry Namaste   ", ' ');
 	printf("FT_SPLIT\n");
-	int i = 0, j;
+	size_t i = 0, j;
 	while (strs[i] != NULL)
 	{
 		j = 0;
@@ -165,13 +166,23 @@ int	main()
 
 	// testing is*.c
 	int c;
-	// c = 'g';
+	const char	*c_in_str;
+	c = 'g';
+	c_in_str = "regular gaming is probably not too good for a balanced life";
 	// c = 'B';
+	// c_in_str = "Bloody Baron was a Bad Slytherin ghost";
 	// c = '9';
+	// c_in_str = "There are 9 enneagram types";
 	// c = ' ';
-	c = '#';
-	// c = '\n';
-	// c = 128;
+	// c_in_str = "";
+	// c = '#';
+	// c_in_str = "#happy";
+	// c = '\t';
+	// c_in_str = "There is no way I will put a newline here";
+	// c = 255;
+	// c_in_str = "There is definitely no way I am gonna put that ascii here or maybe I can \xff. Hope this works!";
+	// c = 0;
+	// c_in_str = "Hmmm/0 The string already ended";
 	printf("FT_ISALNUM\n");
 	printf("%d\n", (ft_isalnum(c) != 0));
 	printf("%d\n", (isalnum(c) != 0));
@@ -188,21 +199,133 @@ int	main()
 	printf("%d\n", (ft_isprint(c) != 0));
 	printf("%d\n", (isprint(c) != 0));
 
-	// testing ft_memset.c //memset does not use 0
+	// testing to*
+	printf("FT_TOUPPER\n");
+	printf("%c\n", ft_toupper(c));
+	printf("%c\n", toupper(c));
+	printf("FT_TOLOWER\n");
+	printf("%c\n", ft_tolower(c));
+	printf("%c\n", tolower(c));
+
+	// testing ft_strchr and ft_strrchr
+	printf("FT_STRCHR\n");
+	str = (char *)malloc(250);
+	ft_bzero(str, 250);
+	str = ft_strchr(c_in_str, c);
+	if (str)
+		printf("%s\n", str);
+	else
+		printf("(null)\n");
+	str = strchr(c_in_str, c);
+	if (str)
+		printf("%s\n", str);
+	else
+		printf("(null)\n");
+	printf("FT_STRRCHR\n");
+	str = ft_strrchr(c_in_str, c);
+	if (str)
+		printf("%s\n", str);
+	else
+		printf("(null)\n");
+	str = strrchr(c_in_str, c);
+	if (str)
+		printf("%s\n", str);
+	else
+		printf("(null)\n");
+
+	// testing ft_memset //memset does not use 0
 	printf("FT_MEMSET\n");
 	str = (char *)malloc(13);
 	ft_strlcpy(str, "hello World!", 12);
-	printf("%s\n", (char *)ft_memset(str, '\n', 2));
+	c = '\n';
+	c = ' ';
+	c = 'A';
+	c = '!';
+	size_t N;
+	N = 2;
+	N = 8;
+	N = 15;
+	str = (char *)ft_memset(str, c, N);
+	while (i < 20)
+		printf("%c", str[i++]);
+	printf("\n");
+
+	// testing ft_memcpy
+	printf("FT_MEMCPY & FT_MEMMOVE\n");
 	ft_strlcpy(str, "hello World!", 12);
-	printf("%s\n", (char *)memset(str, '\n', 2));
+	void *src = str;
+	void *dst = malloc(12);
+	N = 5;
+	size_t	spc;
+	spc = 100;
+	dst = src + spc;
+	dst = ft_memcpy(dst, src, N);
+	i = 0;
+	while (i < N)
+		printf("%c", ((unsigned char *)dst)[i++]);
+	printf("\n");
+
+	//testing ft_memmove
 	ft_strlcpy(str, "hello World!", 12);
-	printf("%s\n", (char *)ft_memset(str, 'A', 8));
+	src = str;
+	dst = src + spc;
+	dst = ft_memmove(dst, src, N);
+	i = 0;
+	while (i < N)
+		printf("%c", ((unsigned char *)dst)[i++]);
+	printf("\n");
+
+	printf("vs MEMCPY & MEMMOVE\n");
+	// comparing with memcpy
 	ft_strlcpy(str, "hello World!", 12);
-	printf("%s\n", (char *)memset(str, 'A', 8));
+	src = str;
+	dst = src + spc;
+	dst = memcpy(dst, src, N);
+	i = 0;
+	while (i < N)
+		printf("%c", ((unsigned char *)dst)[i++]);
+	printf("\n");
+
+	// comparing with memmove
 	ft_strlcpy(str, "hello World!", 12);
-	printf("%s\n", (char *)ft_memset(str, '!', 15));
+	src = str;
+	dst = src + spc;
+	dst = memmove(dst, src, N);
+	i = 0;
+	while (i < N)
+		printf("%c", ((unsigned char *)dst)[i++]);
+	printf("\n");
+
+	// testing ft_bzero
 	ft_strlcpy(str, "hello World!", 12);
-	printf("%s\n", (char *)memset(str, '!', 15));
+	printf("FT_BZERO\n");
+	N = 7;
+	ft_bzero(str, N);
+	i = 0;
+	while (str[i++] == 0)
+		printf("_");
+	char	*pstr;
+	pstr = str + i - 1;
+	printf("%s\n", pstr);
+	ft_strlcpy(str, "hello World!", 12);
+	ft_bzero(str, N);
+	i = 0;
+	while (str[i++] == 0)
+		printf("_");
+	pstr = str + i - 1;
+	printf("%s\n", pstr);
+
+	// testing ft_strlcat
+	printf("FT_STRLCAT\n");
+	N = 19;
+	ft_strlcpy(str, "hello World!", 12);
+	src = "How is it going?";
+	printf("%zu\n", ft_strlcat(str, src, N));
+	printf("%s\n", str);
+	ft_strlcpy(str, "hello World!", 12);
+	printf("%zu\n", strlcat(str, src, N));
+	printf("%s\n", str);
 	free(str);
+
 	return (0);
 }
