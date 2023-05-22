@@ -10,6 +10,7 @@ int	main()
 	// replace with numeral corresponding to function user input
 	// testing ft_substr
 	char	*str;
+	size_t 	N;
 
 	// uncomment only one of these at a time
 	str = ft_substr("Hey hey!", 2, 7);	// testing a case where maximum length more than possible length	
@@ -167,22 +168,22 @@ int	main()
 	// testing is*.c
 	int c;
 	const char	*c_in_str;
-	c = 'g';
-	c_in_str = "regular gaming is probably not too good for a balanced life";
+	// c = 'g';
+	// c_in_str = "regular gaming is probably not too good for a balanced life";
 	// c = 'B';
 	// c_in_str = "Bloody Baron was a Bad Slytherin ghost";
 	// c = '9';
 	// c_in_str = "There are 9 enneagram types";
 	// c = ' ';
 	// c_in_str = "";
-	// c = '#';
-	// c_in_str = "#happy";
+	c = 'y';
+	c_in_str = "#happy";
 	// c = '\t';
 	// c_in_str = "There is no way I will put a newline here";
 	// c = 255;
 	// c_in_str = "There is definitely no way I am gonna put that ascii here or maybe I can \xff. Hope this works!";
 	// c = 0;
-	// c_in_str = "Hmmm/0 The string already ended";
+	// c_in_str = "Hmmm\0 The string already ended";
 	printf("FT_ISALNUM\n");
 	printf("%d\n", (ft_isalnum(c) != 0));
 	printf("%d\n", (isalnum(c) != 0));
@@ -211,25 +212,82 @@ int	main()
 	printf("FT_STRCHR\n");
 	str = (char *)malloc(250);
 	ft_bzero(str, 250);
-	str = ft_strchr(c_in_str, c);
-	if (str)
+	if (ft_strchr(c_in_str, c))
+	{
+		ft_strlcpy(str, ft_strchr(c_in_str, c), ft_strlen(c_in_str) + 1);
 		printf("%s\n", str);
+		free(str);
+	}
 	else
 		printf("(null)\n");
-	str = strchr(c_in_str, c);
-	if (str)
+
+	str = (char *)malloc(250);
+	ft_bzero(str, 250);
+	if (strchr(c_in_str, c))
+	{
+		ft_strlcpy(str, strchr(c_in_str, c), ft_strlen(c_in_str) + 1);
 		printf("%s\n", str);
+		free(str);
+	}
 	else
 		printf("(null)\n");
+
+
+	str = (char *)malloc(250);
+	ft_bzero(str, 250);
 	printf("FT_STRRCHR\n");
-	str = ft_strrchr(c_in_str, c);
-	if (str)
+	if (ft_strrchr(c_in_str, c))
+	{
+		ft_strlcpy(str, ft_strrchr(c_in_str, c), ft_strlen(c_in_str) + 1);
 		printf("%s\n", str);
+		free(str);
+	}
 	else
 		printf("(null)\n");
-	str = strrchr(c_in_str, c);
-	if (str)
+
+	str = (char *)malloc(250);
+	ft_bzero(str, 250);
+	if (strrchr(c_in_str, c))
+	{
+		ft_strlcpy(str, strrchr(c_in_str, c), ft_strlen(c_in_str) + 1);
 		printf("%s\n", str);
+		free(str);
+	}
+	else
+		printf("(null)\n");
+
+	str = (char *)malloc(250);
+	ft_bzero(str, 250);
+	printf("FT_MEMCHR\n");
+	n = 11;
+	N = ft_strlen(c_in_str) + n;
+	if (ft_memchr(c_in_str, c, N))
+	{
+		ft_strlcpy(str, ft_memchr(c_in_str, c, N), ft_strlen(c_in_str) + 1);
+		i = 0;
+		N = ft_strlen(str);
+		while (i < N)
+			printf("%c", str[i++]);
+		printf("\n");
+		free(str);
+	}
+	else
+		printf("(null)\n");
+
+	printf("vs MEMCHR\n");
+	str = (char *)malloc(250);
+	ft_bzero(str, 250);
+	N = ft_strlen(c_in_str) + n;
+	if (ft_memchr(c_in_str, c, N))
+	{
+		ft_strlcpy(str, ft_memchr(c_in_str, c, N), ft_strlen(c_in_str) + 1);
+		i = 0;
+		N = ft_strlen(str);
+		while (i < N)
+			printf("%c", str[i++]);
+		printf("\n");
+		free(str);
+	}
 	else
 		printf("(null)\n");
 
@@ -237,15 +295,16 @@ int	main()
 	printf("FT_MEMSET\n");
 	str = (char *)malloc(13);
 	ft_strlcpy(str, "hello World!", 12);
-	c = '\n';
-	c = ' ';
-	c = 'A';
+	// c = '\n';
+	// c = ' ';
+	// c = 'A';
 	c = '!';
-	size_t N;
-	N = 2;
-	N = 8;
+
+	// N = 2;
+	// N = 8;
 	N = 15;
 	str = (char *)ft_memset(str, c, N);
+	i = 0;
 	while (i < 20)
 		printf("%c", str[i++]);
 	printf("\n");
@@ -276,6 +335,7 @@ int	main()
 	printf("\n");
 
 	printf("vs MEMCPY & MEMMOVE\n");
+
 	// comparing with memcpy
 	ft_strlcpy(str, "hello World!", 12);
 	src = str;
@@ -327,5 +387,65 @@ int	main()
 	printf("%s\n", str);
 	free(str);
 
+	// testing ft_strncmp
+	printf("FT_STRNCMP\n");
+	char *s1, *s2;
+	// N = 4;
+	N = 5;
+	// s1 = "Hello";
+	s1 = "Belly";
+	// s1 = "";
+	// s2 = "Hell";
+	s2 = "Bellicose";
+	printf("%d\n", ft_strncmp(s1, s2, N));
+	printf("%d\n", strncmp(s1, s2, N));
+
+	printf("FT_MEMCMP\n");
+	printf("%d\n", ft_memcmp(s1, s2, N));
+	printf("%d\n", memcmp(s1, s2, N));
+
+	// testing ft_strnstr
+	printf("FT_STRNSTR\n");
+	str = malloc(100);
+	char *needle, *haystack;
+	needle = "friend";
+	haystack = "A friend in need is a friend indeed";
+	N = 6;
+	if (ft_strnstr(haystack, needle, N))
+	{	
+		ft_strlcpy(str, ft_strnstr(haystack, needle, N), ft_strlen(haystack) + 1);
+		printf("%s\n", str);
+		free(str);
+	}
+	else
+		printf("(null)\n");
+
+	str = malloc(100);
+	printf("vs STRNSTR\n");
+	if (strnstr(haystack, needle, N))
+	{
+		ft_strlcpy(str, strnstr(haystack, needle, N), ft_strlen(haystack) + 1);
+		printf("%s\n", str);
+		free(str);
+	}
+	else
+		printf("(null)\n");
+
+	// testing atoi.c
+	char *numstr;
+	
+	numstr = "-2147483648";
+	// numstr = "2147483647";
+	// numstr = "0";
+	// numstr = "+7";
+	// numstr = "-2";
+	// numstr = "42";
+	// numstr = "4";
+	// numstr = "70a8";
+	// numstr = "   12";
+	// numstr = "   -+12";
+	printf("FT_ATOI\n");
+	printf("%d\n", ft_atoi(numstr));
+	printf("%d\n", atoi(numstr));
 	return (0);
 }
