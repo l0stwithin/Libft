@@ -6,7 +6,7 @@
 /*   By: sdutta <sdutta@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:52:09 by sdutta            #+#    #+#             */
-/*   Updated: 2023/05/20 22:52:17 by sdutta           ###   ########.fr       */
+/*   Updated: 2023/05/24 23:14:53 by sdutta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 
 	i = 0;
 	len = ft_strlen(dst);
-	if (size < ft_strlen(src) - 1)
+	if (size < ft_strlen(dst) + 1 || size == 0)
 		return (size + ft_strlen(src));
 	while (dst[i] != 0)
 		i++;
