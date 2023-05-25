@@ -6,7 +6,7 @@
 /*   By: sdutta <sdutta@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 23:42:50 by sdutta            #+#    #+#             */
-/*   Updated: 2023/05/25 18:16:55 by sdutta           ###   ########.fr       */
+/*   Updated: 2023/05/25 18:55:47 by sdutta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ static size_t	word_len(char const *s, char c, size_t	word_no)
 		i++;
 	}
 	j = 0;
+	while (s[i] == c)
+		i++;
 	while (s[i + j] != 0 && s[i + j] != c)
 		j++;
 	return (j);
