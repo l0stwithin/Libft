@@ -1,5 +1,6 @@
 #include "libft.h"
 #include <stdio.h>
+#include <string.h>
 #include <bsd/string.h>
 
 void	test_strlcat(void)
@@ -82,7 +83,17 @@ void	test_strlcat(void)
 	// 	free(dst);
 }
 
+void	test_strncmp(void)
+{
+	char	*str1 = "Hello\x8A";
+	char	*str2 = "Hello";
+
+	printf("%d\n", ft_strncmp(str1, str2, 6));
+	printf("%d\n", strncmp(str1, str2, 6));
+}
+
 int	main(void)
 {
-	test_strlcat();
+	// test_strlcat();
+	test_strncmp();
 }
