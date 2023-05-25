@@ -6,11 +6,12 @@
 /*   By: sdutta <sdutta@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 23:42:50 by sdutta            #+#    #+#             */
-/*   Updated: 2023/05/17 20:46:23 by sdutta           ###   ########.fr       */
+/*   Updated: 2023/05/25 18:16:55 by sdutta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static unsigned int	count_words(char const *s, char c);
 char				**alloc_2darr(char const *s, char c,
@@ -26,7 +27,10 @@ char	**ft_split(char const *s, char c)
 	strs = alloc_2darr(s, c, row_size);
 	if (!strs)
 		return (NULL);
-	return (str_arr(s, c, strs));
+	if (ft_strlen(s) > 0)
+		str_arr(s, c, strs);
+	strs[row_size - 1] = NULL;
+	return ((void *)strs);
 }
 
 static char	**str_arr(char const *s, char c, char **strs)
@@ -40,20 +44,21 @@ static char	**str_arr(char const *s, char c, char **strs)
 	k = 0;
 	while (s[i] == c)
 		i++;
+	if (i == 0)
+		strs[j][k++] = s[i++];
 	while (s[i] != 0)
 	{
 		if (s[i] == c && s[i - 1] != c)
 		{
 			strs[j++][k] = 0;
 			k = 0;
-			i++;
-			continue ;
 		}
 		if (s[i] != c)
 			strs[j][k++] = s[i];
 		i++;
 	}
-	strs[++j] = NULL;
+	if (s[i - 1] != c)
+		strs[j][k] = 0;
 	return (strs);
 }
 
@@ -64,7 +69,11 @@ static unsigned int	count_words(char const *s, char c)
 
 	i = 0;
 	count = 0;
+	if (!ft_strlen(s))
+		return (0);
 	while (s[i] == c)
+		i++;
+	if (i == 0)
 		i++;
 	while (s[i] != 0)
 	{
@@ -72,6 +81,8 @@ static unsigned int	count_words(char const *s, char c)
 			count++;
 		i++;
 	}
+	if (s[i - 1] == c)
+		return (count);
 	return (count + 1);
 }
 
