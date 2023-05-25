@@ -6,7 +6,7 @@
 /*   By: sdutta <sdutta@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 20:31:23 by sdutta            #+#    #+#             */
-/*   Updated: 2023/05/25 05:02:22 by sdutta           ###   ########.fr       */
+/*   Updated: 2023/05/25 23:46:01 by sdutta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	str = (char *)malloc(nmemb * size);
 	if (!str)
 		return (NULL);
-	while (i < nmemb  * size)
+	while (i < nmemb * size)
 		str[i++] = 0;
 	return ((void *)str);
 }

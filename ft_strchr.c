@@ -6,7 +6,7 @@
 /*   By: sdutta <sdutta@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 23:10:17 by sdutta            #+#    #+#             */
-/*   Updated: 2023/05/25 21:24:31 by sdutta           ###   ########.fr       */
+/*   Updated: 2023/05/25 23:45:43 by sdutta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_strchr(const char *s, int c)
 {
 	unsigned char	*str;
 	unsigned char	uc;
-	
+
 	str = (unsigned char *)s;
 	uc = (unsigned char)c;
 	while (*str)

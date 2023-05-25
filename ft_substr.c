@@ -6,7 +6,7 @@
 /*   By: sdutta <sdutta@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 23:04:44 by sdutta            #+#    #+#             */
-/*   Updated: 2023/05/25 23:41:53 by sdutta           ###   ########.fr       */
+/*   Updated: 2023/05/25 23:46:19 by sdutta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	unsigned int	i;
 	char			*str;
-	
 
 	if (start > (unsigned int)ft_strlen(s))
 		len = 0;
