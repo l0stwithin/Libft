@@ -6,12 +6,11 @@
 /*   By: sdutta <sdutta@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 23:42:50 by sdutta            #+#    #+#             */
-/*   Updated: 2023/05/25 18:55:47 by sdutta           ###   ########.fr       */
+/*   Updated: 2023/05/26 00:52:43 by sdutta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static unsigned int	count_words(char const *s, char c);
 char				**alloc_2darr(char const *s, char c,
@@ -126,6 +125,7 @@ char	**alloc_2darr(char const *s, char c, unsigned int row_size)
 		{
 			while (i-- > 0)
 				free(strs[i]);
+			free(strs);
 			return (NULL);
 		}
 		i++;
