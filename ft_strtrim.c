@@ -6,7 +6,7 @@
 /*   By: sdutta <sdutta@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:32:06 by sdutta            #+#    #+#             */
-/*   Updated: 2023/05/16 23:40:57 by sdutta           ###   ########.fr       */
+/*   Updated: 2023/05/25 23:26:07 by sdutta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	i = (size_t)get_beg(s1, set);
 	j = (size_t)get_end(s1, set);
-	if (j < i)
+	if (j < i || !ft_strlen(s1))
 		j = i - 1;
 	str = (char *)malloc(j - i + 2);
 	if (!str)
 		return (NULL);
 	index = 0;
-	while (i <= j)
+	while (i <= j && s1[i] != 0)
 	{
 		str[index] = s1[i];
 		i++;
@@ -58,6 +58,8 @@ static unsigned int	get_end(char const *str, char const *set)
 
 	len = ft_strlen(str);
 	i = len - 1;
+	if (!len)
+		i = 0;
 	while (i > 0 && is_found(str[i], set))
 		i--;
 	return (i);

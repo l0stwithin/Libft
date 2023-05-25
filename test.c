@@ -135,10 +135,44 @@ void	test_calloc(void)
 	free(str2);
 }
 
+void	test_split(void)
+{
+	// char *str1 = "Dovahkin! I am Paartharnux, the greatest Greybeard";
+	// char *str1 = "  Dovahkin!   I    am Paartharnux, the    greatest  Greybeard   ";
+	// char *str1 = "NULL";
+	char *str1 = "   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ";
+	// char *str1 = "null       ";
+	char **strs;
+	char c = ' ';
+	strs = ft_split(str1, c);
+	size_t	i;
+
+	i = 0;
+	while (strs[i])
+	{
+		if (strs[i][0] == c)
+			printf("%s\n", "_");
+		else
+		{
+			printf("%s\n", strs[i]);
+		}
+		i++;
+	}
+}
+
+void	test_strchr(void)
+{
+	char *string = "teste";
+	int c = '\0';
+	printf("%p\n", ft_strchr(string, c));
+}
+
 int	main(void)
 {
 	// test_strlcat();
 	// test_strncmp();
 	// test_memchr();
-	test_calloc();
+	// test_calloc();
+	// test_split();
+	test_strchr();
 }
