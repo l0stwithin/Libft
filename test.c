@@ -92,8 +92,39 @@ void	test_strncmp(void)
 	printf("%d\n", strncmp(str1, str2, 6));
 }
 
+void	test_memchr(void)
+{
+	// case 0: a negative ascii input
+	// int c = -256;
+	// char *str = "Hallo und Wilkommen!";
+	// printf("%d\n", !((unsigned char *)ft_memchr(str, c, 10)));
+	// printf("%d\n", !((unsigned char *)memchr(str, c, 10)));
+
+	// case 1: a few matching chars
+	// int c = 'l';
+	// char *str = "Hallo und Wilkommen!";
+	// printf("%s\n", (unsigned char *)ft_memchr(str, c, 10));
+	// printf("%s\n", (unsigned char *)memchr(str, c, 10));
+
+	// case 2: no matching chars
+	// int c = 'h';
+	// char *str = "Hallo und Wilkommen!";
+	// printf("%d\n", !((unsigned char *)ft_memchr(str, c, 10)));
+	// printf("%d\n", !((unsigned char *)memchr(str, c, 10)));
+
+	// case 3: one matching char
+	int c = 'i';
+	char *str = "Hallo und Wilkommen!";
+	printf("%s\n", (unsigned char *)ft_memchr(str, c, 12));
+	printf("%s\n", (unsigned char *)memchr(str, c, 12));
+
+	// case 4: number of bytes to read at the boundary
+	// case 5: number of bytes to read just inside boundary
+}
+
 int	main(void)
 {
 	// test_strlcat();
-	test_strncmp();
+	// test_strncmp();
+	test_memchr();
 }

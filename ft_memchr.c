@@ -6,7 +6,7 @@
 /*   By: sdutta <sdutta@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 11:26:05 by sdutta            #+#    #+#             */
-/*   Updated: 2023/05/22 11:45:11 by sdutta           ###   ########.fr       */
+/*   Updated: 2023/05/25 04:27:20 by sdutta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 void	*ft_memchr(const void *s, int c, size_t n)
 {
 	size_t			i;
+	unsigned char	uc;
 	unsigned char	*v;
 
 	i = 0;
+	uc = (unsigned char)c;
 	v = (unsigned char *)s;
 	while (i < n)
 	{
-		if (c == v[i])
+		if (uc == v[i])
 			return (&v[i]);
 		i++;
 	}
