@@ -122,9 +122,23 @@ void	test_memchr(void)
 	// case 5: number of bytes to read just inside boundary
 }
 
+void	test_calloc(void)
+{
+	char *str1;
+	char *str2;
+
+	str1 = ft_calloc(30, 1);
+	write(1, str1, 30);
+	str2 = calloc(30, 1);
+	write(1, str2, 30);
+	free(str1);
+	free(str2);
+}
+
 int	main(void)
 {
 	// test_strlcat();
 	// test_strncmp();
-	test_memchr();
+	// test_memchr();
+	test_calloc();
 }
