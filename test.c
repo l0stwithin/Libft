@@ -140,8 +140,9 @@ void	test_split(void)
 	// char *str1 = "Dovahkin! I am Paartharnux, the greatest Greybeard";
 	// char *str1 = "  Dovahkin!   I    am Paartharnux, the    greatest  Greybeard   ";
 	// char *str1 = "NULL";
-	char *str1 = "   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ";
+	// char *str1 = "   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ";
 	// char *str1 = "null       ";
+	char *str1 = "Hello!";
 	char **strs;
 	char c = ' ';
 	strs = ft_split(str1, c);
@@ -156,8 +157,11 @@ void	test_split(void)
 		{
 			printf("%s\n", strs[i]);
 		}
+		free(strs[i]);
 		i++;
 	}
+	free(strs[i]);
+	free(strs);
 }
 
 void	test_strchr(void)
@@ -167,6 +171,85 @@ void	test_strchr(void)
 	printf("%p\n", ft_strchr(string, c));
 }
 
+void	print_list(t_list *lst)
+{
+	printf("PRINTING LIST\n");
+	t_list *trav;
+
+	trav = lst;
+	while (trav)
+	{
+		printf("%s\n", (char *)trav->content);
+		trav = trav->next;
+	}
+}
+void	bonustest_lstnew(void)
+{
+	t_list *node;
+	void *data;
+	// int nbr = 42;
+	// data = &nbr;
+	char *str = "Hello!";
+	data = str;
+	node = ft_lstnew(data);
+	// printf("%d\n", *(int *)node->content);
+	printf("%s\n", (char *)node->content);
+
+}
+
+void	bonustest_lstaddfront()
+{
+	int N;
+	int i;
+	t_list *node;
+	int data;
+	t_list **list;
+	t_list *last;
+
+	i = 0;
+	N = 10;
+	data = 40;
+
+	// while (i < N)
+	// {
+	// 	if (!i)
+	// 	{
+	// 		char *x;
+	// 		x = (char *)&data;
+	// 		node = ft_lstnew(x);
+	// 		list = &node;
+	// 		i++;
+	// 		continue ;
+	// 	}
+	// 	char *y = malloc(1);
+	// 	*y = data + 3 * i;
+	// 	ft_lstadd_front(list, ft_lstnew(y));
+	// 	i++;
+	// }
+
+	while (i < N)
+	{
+		if (!i)
+		{
+			char *x;
+			x = (char *)&data;
+			node = ft_lstnew(x);
+			list = &node;
+			i++;
+			continue ;
+		}
+		char *y = malloc(1);
+		*y = data + 3 * i;
+		ft_lstadd_back(list, ft_lstnew(y));
+		i++;
+	}
+
+	print_list(*list);
+	printf("%d\n", ft_lstsize(*list));
+	last = ft_lstlast(*list);
+	printf("%s\n", (char *)(last->content));
+}
+
 int	main(void)
 {
 	// test_strlcat();
@@ -174,5 +257,7 @@ int	main(void)
 	// test_memchr();
 	// test_calloc();
 	// test_split();
-	test_strchr();
+	// test_strchr();
+	// bonustest_lstnew();
+	bonustest_lstaddfront();
 }
