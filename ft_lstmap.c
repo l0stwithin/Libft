@@ -6,7 +6,7 @@
 /*   By: sdutta <sdutta@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 07:37:52 by sdutta            #+#    #+#             */
-/*   Updated: 2023/05/27 08:31:09 by sdutta           ###   ########.fr       */
+/*   Updated: 2023/05/28 01:36:38 by sdutta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,15 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		trav = trav->next;
 		while (trav)
 		{
-			elem = ft_lstnew(f(trav->content))
+			elem = ft_lstnew(f(trav->content));
 			if (!elem)
 			{
 				ft_lstclear(&new_lst, del);
-				return ;
+				return (NULL);
 			}
 			ft_lstadd_back(&new_lst, elem);
 			trav = trav->next;
 		}
 	}
+	return (new_lst);
 }

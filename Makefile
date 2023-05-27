@@ -1,7 +1,9 @@
 NAME := libft.a
 
 CC := cc
+
 CFLAGS := -Wall -Wextra -Werror
+
 SRCS := ft_atoi.c \
 		ft_bzero.c \
 		ft_calloc.c \
@@ -39,6 +41,18 @@ SRCS := ft_atoi.c \
 
 OBJS := $(SRCS:.c=.o)
 
+BONUS_SRCS := ft_lstadd_back.c \
+			ft_lstadd_front.c \
+			ft_lstclear.c \
+			ft_lstdelone.c \
+			ft_lstiter.c \
+			ft_lstlast.c \
+			ft_lstmap.c \
+			ft_lstnew.c \
+			ft_lstsize.c
+
+BONUS_OBJS := $(BONUS_SRCS:.c=.o)
+
 ARCHIVE := ar rc
 
 REMOVE := rm -rf
@@ -52,9 +66,12 @@ $(NAME):$(OBJS)
 all: $(NAME)
 
 clean:
-	$(REMOVE) $(OBJS)
+	$(REMOVE) $(OBJS) $(BONUS_OBJS)
 
 fclean: clean
 	$(REMOVE) $(NAME)
+
+bonus: $(NAME) $(BONUS_OBJS)
+	$(ARCHIVE) $(NAME) $(BONUS_OBJS)
 
 re: fclean $(NAME)
