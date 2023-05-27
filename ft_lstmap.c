@@ -6,7 +6,7 @@
 /*   By: sdutta <sdutta@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 07:37:52 by sdutta            #+#    #+#             */
-/*   Updated: 2023/05/28 01:36:38 by sdutta           ###   ########.fr       */
+/*   Updated: 2023/05/28 01:43:03 by sdutta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*trav;
 	t_list	*new_lst;
 	t_list	*elem;
-	
+
 	if (lst && del)
 	{
 		trav = lst;

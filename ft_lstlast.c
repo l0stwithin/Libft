@@ -6,7 +6,7 @@
 /*   By: sdutta <sdutta@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 06:09:31 by sdutta            #+#    #+#             */
-/*   Updated: 2023/05/26 06:16:50 by sdutta           ###   ########.fr       */
+/*   Updated: 2023/05/28 01:42:49 by sdutta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	t_list *trav;
+	t_list	*trav;
 
 	trav = lst;
 	while (trav)

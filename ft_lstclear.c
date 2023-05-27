@@ -6,7 +6,7 @@
 /*   By: sdutta <sdutta@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 07:03:53 by sdutta            #+#    #+#             */
-/*   Updated: 2023/05/27 07:21:49 by sdutta           ###   ########.fr       */
+/*   Updated: 2023/05/28 01:42:05 by sdutta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*trav;
 	t_list	*tmp;
-	
+
 	if (del && *lst)
 	{
 		trav = *lst;

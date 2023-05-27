@@ -6,7 +6,7 @@
 /*   By: sdutta <sdutta@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 07:23:43 by sdutta            #+#    #+#             */
-/*   Updated: 2023/05/27 07:36:50 by sdutta           ###   ########.fr       */
+/*   Updated: 2023/05/28 01:42:18 by sdutta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	t_list	*trav;
-	
+
 	if (lst && f)
 	{
 		trav = lst;
