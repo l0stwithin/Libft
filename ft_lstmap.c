@@ -6,35 +6,52 @@
 /*   By: sdutta <sdutta@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 07:37:52 by sdutta            #+#    #+#             */
-/*   Updated: 2023/05/30 21:17:16 by sdutta           ###   ########.fr       */
+/*   Updated: 2023/06/09 10:34:45 by sdutta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static t_list	*fill_list(t_list *new_lst, t_list *lst, void *(*f)(void *),
+							void (*del)(void *))
+{
+	void	*new_data;
+	t_list	*mark;
+
+	lst = lst->next;
+	mark = new_lst;
+	while (lst)
+	{
+		new_data = f(lst->content);
+		new_lst->next = ft_lstnew(new_data);
+		if (!new_lst->next)
+		{
+			del(new_data);
+			ft_lstclear(&mark, del);
+			return (NULL);
+		}
+		new_lst = new_lst->next;
+		lst = lst->next;
+		new_data = NULL;
+	}
+	return (mark);
+}
+
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*trav;
 	t_list	*new_lst;
-	t_list	*elem;
+	t_list	*final_lst;
+	void	*new_data;
 
 	if (!lst)
 		return (NULL);
-	trav = lst;
-	new_lst = ft_lstnew(f(trav->content));
+	new_data = f(lst->content);
+	new_lst = ft_lstnew(new_data);
 	if (!new_lst)
-		return (NULL);
-	trav = trav->next;
-	while (trav)
 	{
-		elem = ft_lstnew(f(trav->content));
-		if (!elem)
-		{
-			ft_lstclear(&new_lst, del);
-			return (NULL);
-		}
-		ft_lstadd_back(&new_lst, elem);
-		trav = trav->next;
+		del(new_data);
+		return (NULL);
 	}
-	return (new_lst);
+	final_lst = fill_list(new_lst, lst, f, del);
+	return (final_lst);
 }
