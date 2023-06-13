@@ -6,14 +6,14 @@
 /*   By: sdutta <sdutta@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 23:42:50 by sdutta            #+#    #+#             */
-/*   Updated: 2023/05/26 00:52:43 by sdutta           ###   ########.fr       */
+/*   Updated: 2023/06/13 15:48:12 by sdutta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 static unsigned int	count_words(char const *s, char c);
-char				**alloc_2darr(char const *s, char c,
+static char			**alloc_2darr(char const *s, char c,
 						unsigned int row_size);
 static char			**str_arr(char const *s, char c, char **strs);
 
@@ -109,7 +109,7 @@ static size_t	word_len(char const *s, char c, size_t	word_no)
 	return (j);
 }
 
-char	**alloc_2darr(char const *s, char c, unsigned int row_size)
+static char	**alloc_2darr(char const *s, char c, unsigned int row_size)
 {
 	char	**strs;
 	size_t	i;
